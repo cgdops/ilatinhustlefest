@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructors - iLatinHustleFest</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for instructors page */
+        .page-header {
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/instructors-header.jpg') no-repeat center center/cover;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .instructors-section {
+            padding: 5rem 0;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .filter-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        .instructors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .instructor-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .instructor-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .instructor-image {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .instructor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .instructor-card:hover .instructor-image img {
+            transform: scale(1.1);
+        }
+        
+        .instructor-specialties {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+        }
+        
+        .specialty-tag {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        .instructor-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .instructor-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .instructor-info p {
+            color: #777;
+            margin-bottom: 1rem;
+        }
+        
+        .instructor-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .instructor-social a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: var(--light-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-color);
+            transition: all 0.3s ease;
+        }
+        
+        .instructor-social a:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        .instructor-bio {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .instructor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 2rem 0;
+        }
+        
+        .modal-content {
+            background: #fff;
+            max-width: 800px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .modal-header {
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 2rem;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-title h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .modal-title p {
+            color: #777;
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .modal-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary-color);
+        }
+        
+        .modal-section p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .achievements-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            color: #666;
+        }
+        
+        .achievements-list li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .workshop-list {
+            margin-top: 1rem;
+        }
+        
+        .workshop-item {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .workshop-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: var(--dark-color);
+        }
+        
+        .workshop-info p {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 0;
+        }
+        
+        .workshop-time {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .modal-image {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .workshop-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .workshop-time {
+                margin-top: 0.5rem;
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo"></a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="instructors.html" class="active">Instructors</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="register-btn"><a href="register.html" class="btn">Register Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Instructors</h1>
+            <p>Learn from the best dancers in the Latin dance community</p>
+        </div>
+    </section>
+
+    <section class="instructors-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>World-Class Instructors</h2>
+                <p>Meet the talented dancers who will guide you through the festival</p>
+            </div>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Styles</button>
+                <button class="filter-btn" data-filter="salsa">Salsa</button>
+                <button class="filter-btn" data-filter="bachata">Bachata</button>
+                <button class="filter-btn" data-filter="kizomba">Kizomba</button>
+                <button class="filter-btn" data-filter="zouk">Zouk</button>
+            </div>
+            
+            <div class="instructors-grid">
+                <!-- Instructor 1 -->
+                <div class="instructor-card" data-categories="salsa bachata">
+                    <div class="instructor-image">
+                        <img src="images/instructor-1.jpg" alt="Carlos Rodriguez">
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Salsa</span>
+                            <span class="specialty-tag">Bachata</span>
+                        </div>
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Carlos Rodriguez</h3>
+                        <p>Miami, FL</p>
+                        <div class="instructor-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="instructor-bio">
+                            Carlos is a world-renowned Salsa and Bachata instructor with over 15 years of experience...
+                            <span class="read-more" data-instructor="carlos">Read More</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 2 -->
+                <div class="instructor-card" data-categories="bachata kizomba">
+                    <div class="instructor-image">
+                        <img src="images/instructor-2.jpg" alt="Maria Sanchez">
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Bachata</span>
+                            <span class="specialty-tag">Kizomba</span>
+                        </div>
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Maria Sanchez</h3>
+                        <p>New York, NY</p>
+                        <div class="instructor-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="instructor-bio">
+                            Maria is known for her elegant style and precise technique in Bachata and Kizomba...
+                            <span class="read-more" data-instructor="maria">Read More</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 3 -->
+                <div class="instructor-card" data-categories="salsa">
+                    <div class="instructor-image">
+                        <img src="images/instructor-3.jpg" alt="Juan Perez">
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Salsa</span>
+                            <span class="specialty-tag">Mambo</span>
+                        </div>
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Juan Perez</h3>
+                        <p>Los Angeles, CA</p>
+                        <div class="instructor-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="instructor-bio">
+                            Juan is a master of On1 and On2 Salsa, known for his dynamic style and creative choreography...
+                            <span class="read-more" data-instructor="juan">Read More</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 4 -->
+                <div class="instructor-card" data-categories="zouk">
+                    <div class="instructor-image">
+                        <img src="images/instructor-4.jpg" alt="Sofia Martinez">
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Brazilian Zouk</span>
+                        </div>
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Sofia Martinez</h3>
+                        <p>Rio de Janeiro, Brazil</p>
+                        <div class="instructor-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="instructor-bio">
+                            Sofia brings the authentic Brazilian Zouk style, focusing on flow and connection...
+                            <span class="read-more" data-instructor="sofia">Read More</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 5 -->
+                <div class="instructor-card" data-categories="kizomba">
+                    <div class="instructor-image">
+                        <img src="images/instructor-5.jpg" alt="Antonio Silva">
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Kizomba</span>
+                            <span class="specialty-tag">Urban Kiz</span>
+                        </div>
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Antonio Silva</h3>
+                        <p>Lisbon, Portugal</p>
+                        <div class="instructor-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="instructor-bio">
+                            Antonio is a Kizomba specialist who brings authentic Angolan style with modern influences...
+                            <span class="read-more" data-instructor="antonio">Read More</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Instructor 6 -->
+                <div class="instructor-card" data-categories="bachata">
+                    <div class="instructor-image">
+                        <img src="images/instructor-6.jpg" alt="Elena Lopez">
+                        <div class="instructor-specialties">
+                            <span class="specialty-tag">Sensual Bachata</span>
+                            <span class="specialty-tag">Dominican Bachata</span>
+                        </div>
+                    </div>
+                    <div class="instructor-info">
+                        <h3>Elena Lopez</h3>
+                        <p>Santo Domingo, Dominican Republic</p>
+                        <div class="instructor-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <div class="instructor-bio">
+                            Elena specializes in both traditional Dominican and modern Sensual Bachata styles...
+                            <span class="read-more" data-instructor="elena">Read More</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Instructor Modals -->
+    <div class="instructor-modal" id="carlosModal">
+        <div class="modal-content">
+            <div class="close-modal"><i class="fas fa-times"></i></div>
+            <div class="modal-header">
+                <div class="modal-image">
+                    <img src="images/instructor-1.jpg" alt="Carlos Rodriguez">
+                </div>
+                <div class="modal-title">
+                    <h2>Carlos Rodriguez</h2>
+                    <p>Salsa & Bachata Instructor</p>
+                    <div class="instructor-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3>Biography</h3>
+                    <p>Carlos Rodriguez is a world-renowned Salsa and Bachata instructor with over 15 years of experience in the Latin dance industry. Born and raised in Miami to Cuban parents, Carlos grew up immersed in Latin music and dance culture.</p>
+                    <p>He began his professional dance career at the age of 18 and quickly rose to prominence in the international Latin dance scene. Carlos has performed and taught in over 30 countries, sharing his passion and knowledge with thousands of students worldwide.</p>
+                    <p>His teaching style emphasizes proper technique, musicality, and connection with your partner. Carlos is known for his ability to break down complex movements into easy-to-understand components, making his classes accessible to dancers of all levels.</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Achievements & Recognition</h3>
+                    <ul class="achievements-list">
+                        <li>5-time World Salsa Championship finalist</li>
+                        <li>Featured instructor at the World Latin Dance Cup</li>
+                        <li>Choreographer for several Latin music artists</li>
+                        <li>Founder of the Miami Salsa Congress</li>
+                        <li>Creator of the "Salsa Fundamentals" instructional video series</li>
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Workshops at iLatinHustleFest</h3>
+                    <div class="workshop-list">
+                        <div class="workshop-item">
+                            <div class="workshop-info">
+                                <h4>Salsa On1 Fundamentals</h4>
+                                <p>Perfect for beginners looking to build a solid foundation</p>
+                            </div>
+                            <div class="workshop-time">Saturday, 10:00 AM</div>
+                        </div>
+                        <div class="workshop-item">
+                            <div class="workshop-info">
+                                <h4>Advanced Bachata Partnerwork</h4>
+                                <p>Complex patterns and combinations for intermediate/advanced dancers</p>
+                            </div>
+                            <div class="workshop-time">Saturday, 2:00 PM</div>
+                        </div>
+                        <div class="workshop-item">
+                            <div class="workshop-info">
+                                <h4>Musicality in Salsa</h4>
+                                <p>Learn to express the music through your dancing</p>
+                            </div>
+                            <div class="workshop-time">Sunday, 11:30 AM</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="instructor-modal" id="mariaModal">
+        <!-- Similar structure for Maria's modal -->
+    </div>
+    
+    <!-- Other instructor modals would follow the same pattern -->
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest news and updates about iLatinHustleFest.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo">
+                    <p>The Ultimate Latin Dance Experience</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="schedule.html">Schedule</a></li>
+                            <li><a href="instructors.html">Instructors</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Contact Us</h3>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-envelope"></i> info@ilatinhustlefest.com</li>
+                            <li><i class="fas fa-phone"></i> (305) 555-1234</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Miami, Florida</li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 iLatinHustleFest. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const instructorCards = document.querySelectorAll('.instructor-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    // Show/hide instructor cards based on filter
+                    instructorCards.forEach(card => {
+                        if (filterValue === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const categories = card.getAttribute('data-categories');
+                            if (categories.includes(filterValue)) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Modal functionality
+            const readMoreButtons = document.querySelectorAll('.read-more');
+            const modals = document.querySelectorAll('.instructor-modal');
+            const closeButtons = document.querySelectorAll('.close-modal');
+            
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const instructor = button.getAttribute('data-instructor');
+                    const modal = document.getElementById(`${instructor}Modal`);
+                    if (modal) {
+                        modal.style.display = 'block';
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const modal = button.closest('.instructor-modal');
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            // Close modal when clicking outside of content
+            modals.forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

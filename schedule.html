@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule - iLatinHustleFest</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for schedule page */
+        .page-header {
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/schedule-header.jpg') no-repeat center center/cover;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .schedule-section {
+            padding: 5rem 0;
+        }
+        
+        .schedule-tabs {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #777;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+        }
+        
+        .tab-btn.active::after {
+            width: 100%;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .day-title {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .day-title h2 {
+            font-size: 2rem;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .day-title p {
+            color: #777;
+            font-size: 1.1rem;
+        }
+        
+        .schedule-timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .schedule-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 100%;
+            width: 2px;
+            background: #ddd;
+        }
+        
+        .schedule-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+        
+        .schedule-item::before {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            left: -42px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 4px solid #fff;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        .schedule-time {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .schedule-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+        
+        .schedule-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .schedule-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .detail-tag {
+            display: inline-flex;
+            align-items: center;
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .detail-tag i {
+            margin-right: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .workshop-level {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .level-label {
+            margin-right: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .level-indicator {
+            display: flex;
+        }
+        
+        .level-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            margin-right: 3px;
+        }
+        
+        .level-dot.active {
+            background: var(--primary-color);
+        }
+        
+        .filter-section {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .filter-btn {
+            background: #f0f0f0;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        @media (max-width: 768px) {
+            .tab-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .tab-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+            
+            .schedule-timeline {
+                padding-left: 30px;
+            }
+            
+            .schedule-timeline::before {
+                left: 15px;
+            }
+            
+            .schedule-item::before {
+                left: -22px;
+                width: 12px;
+                height: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo"></a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="schedule.html" class="active">Schedule</a></li>
+                    <li><a href="instructors.html">Instructors</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="register-btn"><a href="register.html" class="btn">Register Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Event Schedule</h1>
+            <p>Plan your festival experience with our detailed schedule</p>
+        </div>
+    </section>
+
+    <section class="schedule-section">
+        <div class="container">
+            <div class="filter-section">
+                <h3>Filter by Dance Style</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All Styles</button>
+                    <button class="filter-btn" data-filter="salsa">Salsa</button>
+                    <button class="filter-btn" data-filter="bachata">Bachata</button>
+                    <button class="filter-btn" data-filter="kizomba">Kizomba</button>
+                    <button class="filter-btn" data-filter="zouk">Zouk</button>
+                    <button class="filter-btn" data-filter="social">Social Events</button>
+                </div>
+            </div>
+            
+            <div class="schedule-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-day="friday">Friday, Aug 18</button>
+                    <button class="tab-btn" data-day="saturday">Saturday, Aug 19</button>
+                    <button class="tab-btn" data-day="sunday">Sunday, Aug 20</button>
+                </div>
+                
+                <div class="tab-content active" id="friday">
+                    <div class="day-title">
+                        <h2>Day 1: Friday</h2>
+                        <p>Welcome Day & Opening Night</p>
+                    </div>
+                    
+                    <div class="schedule-timeline">
+                        <div class="schedule-item" data-category="social">
+                            <span class="schedule-time">3:00 PM - 5:00 PM</span>
+                            <h3>Registration & Check-in</h3>
+                            <p>Pick up your festival pass and welcome package</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Main Lobby</span>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="social">
+                            <span class="schedule-time">6:00 PM - 7:30 PM</span>
+                            <h3>Welcome Reception</h3>
+                            <p>Meet & Greet with instructors and fellow dancers</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Main Ballroom</span>
+                                <span class="detail-tag"><i class="fas fa-glass-cheers"></i> Light refreshments served</span>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="social">
+                            <span class="schedule-time">8:00 PM - 2:00 AM</span>
+                            <h3>Opening Night Party</h3>
+                            <p>Kick off the festival with a night of dancing</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Grand Ballroom</span>
+                                <span class="detail-tag"><i class="fas fa-music"></i> Live Band & DJs</span>
+                                <span class="detail-tag"><i class="fas fa-star"></i> Instructor Showcase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="saturday">
+                    <div class="day-title">
+                        <h2>Day 2: Saturday</h2>
+                        <p>Workshops & Main Event</p>
+                    </div>
+                    
+                    <div class="schedule-timeline">
+                        <div class="schedule-item" data-category="salsa">
+                            <span class="schedule-time">10:00 AM - 11:00 AM</span>
+                            <h3>Beginner Salsa Workshop</h3>
+                            <p>Learn the fundamentals of Salsa dancing</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio A</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Carlos Rodriguez</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                    <span class="level-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="bachata">
+                            <span class="schedule-time">10:00 AM - 11:00 AM</span>
+                            <h3>Intermediate Bachata Workshop</h3>
+                            <p>Improve your Bachata technique and styling</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio B</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Maria Sanchez</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="kizomba">
+                            <span class="schedule-time">11:30 AM - 12:30 PM</span>
+                            <h3>Beginner Kizomba Workshop</h3>
+                            <p>Introduction to Kizomba fundamentals</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio C</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Antonio & Sofia</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                    <span class="level-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="salsa">
+                            <span class="schedule-time">1:30 PM - 2:30 PM</span>
+                            <h3>Advanced Salsa Partnerwork</h3>
+                            <p>Complex patterns and combinations</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio A</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Juan Perez</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="zouk">
+                            <span class="schedule-time">3:00 PM - 4:00 PM</span>
+                            <h3>Brazilian Zouk Fundamentals</h3>
+                            <p>Introduction to Brazilian Zouk</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio B</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Rafael & Chloe</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                    <span class="level-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="social">
+                            <span class="schedule-time">8:00 PM - 3:00 AM</span>
+                            <h3>Main Event Party</h3>
+                            <p>The highlight of the festival featuring performances and social dancing</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Grand Ballroom</span>
+                                <span class="detail-tag"><i class="fas fa-music"></i> Live Orchestra</span>
+                                <span class="detail-tag"><i class="fas fa-star"></i> Professional Shows</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="sunday">
+                    <div class="day-title">
+                        <h2>Day 3: Sunday</h2>
+                        <p>Final Workshops & Closing Event</p>
+                    </div>
+                    
+                    <div class="schedule-timeline">
+                        <div class="schedule-item" data-category="bachata">
+                            <span class="schedule-time">11:00 AM - 12:00 PM</span>
+                            <h3>Sensual Bachata Workshop</h3>
+                            <p>Advanced styling and sensual movements</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio A</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Maria Sanchez</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="salsa">
+                            <span class="schedule-time">12:30 PM - 1:30 PM</span>
+                            <h3>Salsa Shines & Styling</h3>
+                            <p>Solo movements to enhance your dance</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Studio B</span>
+                                <span class="detail-tag"><i class="fas fa-user"></i> Carlos Rodriguez</span>
+                            </div>
+                            <div class="workshop-level">
+                                <span class="level-label">Level:</span>
+                                <div class="level-indicator">
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot active"></span>
+                                    <span class="level-dot"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="social">
+                            <span class="schedule-time">2:00 PM - 4:00 PM</span>
+                            <h3>Closing Showcase</h3>
+                            <p>Student performances and instructor shows</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Main Ballroom</span>
+                                <span class="detail-tag"><i class="fas fa-trophy"></i> Awards Ceremony</span>
+                            </div>
+                        </div>
+                        
+                        <div class="schedule-item" data-category="social">
+                            <span class="schedule-time">4:30 PM - 9:00 PM</span>
+                            <h3>Farewell Party</h3>
+                            <p>Final social dancing to conclude the festival</p>
+                            <div class="schedule-details">
+                                <span class="detail-tag"><i class="fas fa-map-marker-alt"></i> Grand Ballroom</span>
+                                <span class="detail-tag"><i class="fas fa-music"></i> DJ Sets</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest news and updates about iLatinHustleFest.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo">
+                    <p>The Ultimate Latin Dance Experience</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="schedule.html">Schedule</a></li>
+                            <li><a href="instructors.html">Instructors</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Contact Us</h3>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-envelope"></i> info@ilatinhustlefest.com</li>
+                            <li><i class="fas fa-phone"></i> (305) 555-1234</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Miami, Florida</li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 iLatinHustleFest. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

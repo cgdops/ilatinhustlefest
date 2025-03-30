@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLatinHustleFest - Latin Dance Festival</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo"></a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="instructors.html">Instructors</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="register-btn"><a href="register.html" class="btn">Register Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <iframe class="hero-video" src="https://player.vimeo.com/video/1003778968?h=0b162f5cb7&autoplay=1&loop=1&autopause=0&muted=1&title=0&byline=0&portrait=0&controls=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <div class="container">
+            <div class="hero-content">
+                <h1>iLatinHustleFest</h1>
+                <h2>The Ultimate Latin Dance Experience</h2>
+                <p>Join us for an unforgettable weekend of dancing, learning, and connecting with the Latin dance community.</p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn btn-primary">Register Now</a>
+                    <a href="schedule.html" class="btn btn-secondary">View Schedule</a>
+                </div>
+                <div class="event-info">
+                    <div class="info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>August 18-20, 2023</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Miami, Florida</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>About The Festival</h2>
+                <p>Experience the passion and energy of Latin dance</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="images/about-preview.jpg" alt="Latin dancers performing">
+                </div>
+                <div class="about-text">
+                    <h3>A Celebration of Latin Dance</h3>
+                    <p>iLatinHustleFest brings together world-class instructors, performers, and dance enthusiasts for a weekend filled with workshops, social dancing, and unforgettable performances.</p>
+                    <p>Whether you're a beginner or an advanced dancer, our festival offers classes for all levels in Salsa, Bachata, Kizomba, and more.</p>
+                    <a href="about.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="instructors-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Instructors</h2>
+                <p>Learn from the best in the industry</p>
+            </div>
+            <div class="instructor-cards">
+                <div class="instructor-card">
+                    <div class="instructor-image">
+                        <img src="images/instructor-1.jpg" alt="Instructor 1">
+                    </div>
+                    <h3>Carlos Rodriguez</h3>
+                    <p>Salsa & Bachata</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="instructor-card">
+                    <div class="instructor-image">
+                        <img src="images/instructor-2.jpg" alt="Instructor 2">
+                    </div>
+                    <h3>Maria Sanchez</h3>
+                    <p>Bachata & Kizomba</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="instructor-card">
+                    <div class="instructor-image">
+                        <img src="images/instructor-3.jpg" alt="Instructor 3">
+                    </div>
+                    <h3>Juan Perez</h3>
+                    <p>Salsa & Mambo</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="instructors.html" class="btn">View All Instructors</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="schedule-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Event Schedule</h2>
+                <p>Plan your festival experience</p>
+            </div>
+            <div class="schedule-tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-day="friday">Friday</button>
+                    <button class="tab-btn" data-day="saturday">Saturday</button>
+                    <button class="tab-btn" data-day="sunday">Sunday</button>
+                </div>
+                <div class="tab-content active" id="friday">
+                    <div class="schedule-item">
+                        <div class="time">6:00 PM - 7:30 PM</div>
+                        <div class="details">
+                            <h3>Welcome Reception</h3>
+                            <p>Meet & Greet with instructors and fellow dancers</p>
+                            <span class="location">Main Ballroom</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time">8:00 PM - 2:00 AM</div>
+                        <div class="details">
+                            <h3>Social Dancing</h3>
+                            <p>Kick off the festival with a night of dancing</p>
+                            <span class="location">Grand Ballroom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="saturday">
+                    <div class="schedule-item">
+                        <div class="time">10:00 AM - 11:00 AM</div>
+                        <div class="details">
+                            <h3>Beginner Salsa Workshop</h3>
+                            <p>Learn the fundamentals of Salsa dancing</p>
+                            <span class="location">Studio A</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time">11:30 AM - 12:30 PM</div>
+                        <div class="details">
+                            <h3>Intermediate Bachata Workshop</h3>
+                            <p>Take your Bachata skills to the next level</p>
+                            <span class="location">Studio B</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time">8:00 PM - 3:00 AM</div>
+                        <div class="details">
+                            <h3>Main Event Party</h3>
+                            <p>Featuring performances and social dancing</p>
+                            <span class="location">Grand Ballroom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" id="sunday">
+                    <div class="schedule-item">
+                        <div class="time">11:00 AM - 12:00 PM</div>
+                        <div class="details">
+                            <h3>Advanced Salsa Workshop</h3>
+                            <p>Master complex patterns and styling</p>
+                            <span class="location">Studio A</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time">2:00 PM - 4:00 PM</div>
+                        <div class="details">
+                            <h3>Closing Showcase</h3>
+                            <p>Student performances and instructor shows</p>
+                            <span class="location">Main Ballroom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="schedule.html" class="btn">View Full Schedule</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ticket Options</h2>
+                <p>Choose the package that fits your needs</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Basic Pass</h3>
+                        <div class="price">$149</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to Friday social</li>
+                            <li><i class="fas fa-check"></i> 2 workshops of your choice</li>
+                            <li><i class="fas fa-check"></i> Saturday party access</li>
+                            <li><i class="fas fa-times"></i> Sunday showcase</li>
+                            <li><i class="fas fa-times"></i> VIP seating</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="card-header">
+                        <div class="featured-label">Most Popular</div>
+                        <h3>Full Pass</h3>
+                        <div class="price">$249</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all social events</li>
+                            <li><i class="fas fa-check"></i> 5 workshops of your choice</li>
+                            <li><i class="fas fa-check"></i> All parties and socials</li>
+                            <li><i class="fas fa-check"></i> Sunday showcase</li>
+                            <li><i class="fas fa-times"></i> VIP seating</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn btn-primary">Get Tickets</a>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>VIP Pass</h3>
+                        <div class="price">$349</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all social events</li>
+                            <li><i class="fas fa-check"></i> Unlimited workshops</li>
+                            <li><i class="fas fa-check"></i> All parties and socials</li>
+                            <li><i class="fas fa-check"></i> Sunday showcase</li>
+                            <li><i class="fas fa-check"></i> VIP seating & reception</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            <div class="view-all">
+                <a href="pricing.html" class="btn">View All Options</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Dancers Say</h2>
+                <p>Hear from past attendees</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p>"iLatinHustleFest was an incredible experience! The instructors were amazing and I learned so much in just one weekend. Can't wait for next year!"</p>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-1.jpg" alt="Testimonial Author">
+                            <div class="author-info">
+                                <h4>Sarah Johnson</h4>
+                                <p>Miami, FL</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p>"As a beginner, I was worried I wouldn't fit in, but everyone was so welcoming. The workshops were perfect for my level and I had an amazing time at the social dances."</p>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-2.jpg" alt="Testimonial Author">
+                            <div class="author-info">
+                                <h4>Michael Rodriguez</h4>
+                                <p>New York, NY</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p>"The organization was flawless, the venue was beautiful, and the energy was incredible. This is definitely the best Latin dance festival I've attended!"</p>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-3.jpg" alt="Testimonial Author">
+                            <div class="author-info">
+                                <h4>Lisa Chen</h4>
+                                <p>Los Angeles, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest news and updates about iLatinHustleFest.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo">
+                    <p>The Ultimate Latin Dance Experience</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="schedule.html">Schedule</a></li>
+                            <li><a href="instructors.html">Instructors</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Contact Us</h3>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-envelope"></i> info@ilatinhustlefest.com</li>
+                            <li><i class="fas fa-phone"></i> (305) 555-1234</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Miami, Florida</li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 iLatinHustleFest. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

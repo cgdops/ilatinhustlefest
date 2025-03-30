@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - iLatinHustleFest</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for pricing page */
+        .page-header {
+            height: 300px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/pricing-header.jpg') no-repeat center center/cover;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .pricing-section {
+            padding: 5rem 0;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .pricing-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .featured-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--primary-color);
+            color: #fff;
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-bottom-left-radius: 10px;
+        }
+        
+        .card-header {
+            background: var(--dark-color);
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .card-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        
+        .price-period {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .card-body ul li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-body ul li i {
+            margin-right: 0.5rem;
+        }
+        
+        .card-body ul li .fa-check {
+            color: var(--success-color);
+        }
+        
+        .card-body ul li .fa-times {
+            color: var(--danger-color);
+        }
+        
+        .card-footer {
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .comparison-section {
+            padding: 5rem 0;
+            background: #f9f9f9;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+        
+        .comparison-table th {
+            background: var(--dark-color);
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+        
+        .comparison-table i.fa-check {
+            color: var(--success-color);
+        }
+        
+        .comparison-table i.fa-times {
+            color: var(--danger-color);
+        }
+        
+        .faq-section {
+            padding: 5rem 0;
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-answer p {
+            color: #666;
+        }
+        
+        .group-discount {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/group-discount.jpg') no-repeat center center/cover;
+            padding: 5rem 0;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .group-discount-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .group-discount h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .group-discount p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo"></a>
+                </div>
+                <div class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="schedule.html">Schedule</a></li>
+                    <li><a href="instructors.html">Instructors</a></li>
+                    <li><a href="pricing.html" class="active">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li class="register-btn"><a href="register.html" class="btn">Register Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Ticket Options</h1>
+            <p>Choose the package that fits your needs and budget</p>
+        </div>
+    </section>
+
+    <section class="pricing-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Festival Passes</h2>
+                <p>Select the perfect pass for your dance experience</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Basic Pass</h3>
+                        <div class="price">$149</div>
+                        <div class="price-period">per person</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to Friday social</li>
+                            <li><i class="fas fa-check"></i> 2 workshops of your choice</li>
+                            <li><i class="fas fa-check"></i> Saturday party access</li>
+                            <li><i class="fas fa-times"></i> Sunday showcase</li>
+                            <li><i class="fas fa-times"></i> VIP seating</li>
+                            <li><i class="fas fa-times"></i> Private instructor sessions</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="featured-label">Most Popular</div>
+                    <div class="card-header">
+                        <h3>Full Pass</h3>
+                        <div class="price">$249</div>
+                        <div class="price-period">per person</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all social events</li>
+                            <li><i class="fas fa-check"></i> 5 workshops of your choice</li>
+                            <li><i class="fas fa-check"></i> All parties and socials</li>
+                            <li><i class="fas fa-check"></i> Sunday showcase</li>
+                            <li><i class="fas fa-times"></i> VIP seating</li>
+                            <li><i class="fas fa-times"></i> Private instructor sessions</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn btn-primary">Get Tickets</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>VIP Pass</h3>
+                        <div class="price">$349</div>
+                        <div class="price-period">per person</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all social events</li>
+                            <li><i class="fas fa-check"></i> Unlimited workshops</li>
+                            <li><i class="fas fa-check"></i> All parties and socials</li>
+                            <li><i class="fas fa-check"></i> Sunday showcase</li>
+                            <li><i class="fas fa-check"></i> VIP seating & reception</li>
+                            <li><i class="fas fa-check"></i> 1 private instructor session</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Party Pass</h3>
+                        <div class="price">$99</div>
+                        <div class="price-period">per person</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all social parties</li>
+                            <li><i class="fas fa-check"></i> Friday, Saturday & Sunday nights</li>
+                            <li><i class="fas fa-times"></i> No workshop access</li>
+                            <li><i class="fas fa-times"></i> No showcase access</li>
+                            <li><i class="fas fa-times"></i> No VIP benefits</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Workshop Pass</h3>
+                        <div class="price">$179</div>
+                        <div class="price-period">per person</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all workshops</li>
+                            <li><i class="fas fa-check"></i> Sunday showcase</li>
+                            <li><i class="fas fa-times"></i> No party access</li>
+                            <li><i class="fas fa-times"></i> No social events</li>
+                            <li><i class="fas fa-times"></i> No VIP benefits</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="card-header">
+                        <h3>Single Day Pass</h3>
+                        <div class="price">$99</div>
+                        <div class="price-period">per person</div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to all events for one day</li>
+                            <li><i class="fas fa-check"></i> Workshops on selected day</li>
+                            <li><i class="fas fa-check"></i> Party access on selected day</li>
+                            <li><i class="fas fa-times"></i> No VIP benefits</li>
+                            <li><i class="fas fa-times"></i> No private sessions</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="register.html" class="btn">Get Tickets</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Pass Comparison</h2>
+                <p>Compare features across different pass options</p>
+            </div>
+            
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                            <th>Basic Pass<br>$149</th>
+                            <th>Full Pass<br>$249</th>
+                            <th>VIP Pass<br>$349</th>
+                            <th>Party Pass<br>$99</th>
+                            <th>Workshop Pass<br>$179</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Friday Social</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Saturday Party</td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Sunday Closing Party</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Workshop Access</td>
+                            <td>2 Workshops</td>
+                            <td>5 Workshops</td>
+                            <td>Unlimited</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td>Unlimited</td>
+                        </tr>
+                        <tr>
+                            <td>Sunday Showcase</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>VIP Seating</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-check"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Private Instructor Session</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td>1 Session</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                        <tr>
+                            <td>Festival Merchandise</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td>T-shirt</td>
+                            <td>Full Package</td>
+                            <td><i class="fas fa-times"></i></td>
+                            <td><i class="fas fa-times"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="group-discount">
+        <div class="container">
+            <div class="group-discount-content">
+                <h2>Group Discounts</h2>
+                <p>Coming with friends? Save more with our group discounts! Groups of 5+ receive 10% off, and groups of 10+ receive 15% off the total price. Contact us for details and to arrange group registration.</p>
+                <a href="contact.html" class="btn btn-primary">Contact for Group Rates</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Answers to common questions about tickets and pricing</p>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What's included in the registration fee? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Registration fees include access to workshops, parties, and events as specified in your selected pass. All passes include a festival wristband, program guide, and access to the vendor area. Food and accommodation are not included unless specifically mentioned.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Can I upgrade my pass during the festival? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can upgrade your pass at the registration desk during the festival. You'll only need to pay the difference between your current pass and the upgraded pass. Please note that downgrades or refunds for unused portions of passes are not available.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Are there any discounts available? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer early bird discounts (typically 15% off) until two months before the festival. Group discounts are available for groups of 5+ (10% off) and 10+ (15% off). Students with valid ID receive a 10% discount on Basic and Full passes only.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        What is your refund policy? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Refunds are available up to 30 days before the event with a 15% processing fee. Within 30 days of the event, no refunds are available, but you can transfer your pass to another person for a $25 transfer fee. In case of event cancellation, full refunds will be issued.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        How do I select my workshops? <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After purchasing your pass, you'll receive a confirmation email with instructions on how to select your workshops. Workshop selection opens one month before the festival and is on a first-come, first-served basis. VIP pass holders get priority workshop selection.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Stay Updated</h2>
+                <p>Subscribe to our newsletter for the latest news and updates about iLatinHustleFest.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo-dancer.svg" alt="iLatinHustleFest Logo">
+                    <p>The Ultimate Latin Dance Experience</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="schedule.html">Schedule</a></li>
+                            <li><a href="instructors.html">Instructors</a></li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Contact Us</h3>
+                        <ul class="contact-info">
+                            <li><i class="fas fa-envelope"></i> info@ilatinhustlefest.com</li>
+                            <li><i class="fas fa-phone"></i> (305) 555-1234</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Miami, Florida</li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 iLatinHustleFest. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // FAQ Accordion
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    
+                    // Toggle active class
+                    question.classList.toggle('active');
+                    answer.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
