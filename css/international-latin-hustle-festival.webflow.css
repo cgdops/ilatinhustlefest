@@ -1529,6 +1529,10 @@
   object-position: 50% 0%;
 }
 
+.cover-image.djs.frank {
+  object-position: 50% 50%;
+}
+
 .cover-image.artist-center-face {
   object-position: 35% 50%;
 }
