@@ -398,7 +398,7 @@
 }
 
 .section.comp-image.innerpage {
-  background-image: url('../images/hero-bkg-img.png');
+  background-image: none;
 }
 
 .eyebrow {
@@ -4872,8 +4872,8 @@
 }
 
 .nav-menu-list {
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-column-gap: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---spacing--0-5x);
+  grid-row-gap: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---spacing--0-5x);
   flex-flow: row;
   margin-bottom: 0;
   padding-left: 0;
@@ -6358,6 +6358,16 @@ img {
 
 .u-image-shift-left {
   object-position: 65% 50%;
+}
+
+.absolute-bg-image {
+  object-fit: cover;
+  border-radius: 0;
+  height: 100%;
+  display: block;
+  position: absolute;
+  inset: 0%;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 991px) {
