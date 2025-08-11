@@ -606,16 +606,10 @@
   grid-row-gap: 2.7rem;
 }
 
-.grid-layout.comp-reg {
+.grid-layout.comp-reg, .grid-layout.artists {
   grid-column-gap: 2rem;
   grid-row-gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr;
-}
-
-.grid-layout.artists {
-  grid-column-gap: 2rem;
-  grid-row-gap: 2rem;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .grid-layout.passes {
@@ -7611,7 +7605,7 @@ img {
   place-self: end center;
 }
 
-#w-node-_503155f5-704f-7d4e-f491-d6bf2340c35d-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea30b-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_8cc53df3-3a8b-493f-48be-6a84561e9f4d-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_4ef0c559-88a6-dea8-dd1d-19922c6a5c80-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_6508155a-3497-2d20-59a6-3d82a0734349-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_13a0dd69-2e07-1922-91b2-b663efb094df-a6fc2bec, #w-node-b747cdbb-2f07-fbf5-424c-cad62d8b55f3-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea32b-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-e8159532-8cdb-1474-82b3-0c90163cb832-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-d19ef8c8-5d7d-e26e-85c7-43c0cb5175c8-a6fc2bec, #w-node-_9f412443-e32b-c32d-58d0-605315d4fb47-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea315-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea31f-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_9c570ad4-a2d3-28b4-05e0-f0ada6f00d05-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-e4856f23-75fa-b429-169d-45877a00a174-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-ed84d1cb-9ece-0b32-7013-8e79d3a902d4-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_300a2886-4d7a-5370-48e5-dc4c3a53068b-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-a0729f5b-865f-20f1-bc02-cd20c5e41667-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_66abfc52-53b7-6867-2153-d66cc8f62c9c-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_8c126424-cafd-bc10-5f32-2547515ece75-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_7c52c30c-c8ef-e7bb-ccd5-c32c7b1596be-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-ef90f226-169e-fac4-c228-08d68dc7a5a4-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_28e754e2-d737-8d9d-b9ee-dc64d8f867bb-a6fc2bec, #w-node-_662a597d-3346-db7a-32c2-d1d2355cf7d1-355cf7ca.w-node-_8b1858dc-5f92-fd68-c0ca-ce43b2b3bc1e-a061272f {
+#w-node-_503155f5-704f-7d4e-f491-d6bf2340c35d-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea30b-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_8cc53df3-3a8b-493f-48be-6a84561e9f4d-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_4ef0c559-88a6-dea8-dd1d-19922c6a5c80-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_6508155a-3497-2d20-59a6-3d82a0734349-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_13a0dd69-2e07-1922-91b2-b663efb094df-a6fc2bec, #w-node-b747cdbb-2f07-fbf5-424c-cad62d8b55f3-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea32b-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-e8159532-8cdb-1474-82b3-0c90163cb832-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-d19ef8c8-5d7d-e26e-85c7-43c0cb5175c8-a6fc2bec, #w-node-_9f412443-e32b-c32d-58d0-605315d4fb47-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea315-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_99c3c0bb-5670-e1f8-1724-91fddaaea31f-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_9c570ad4-a2d3-28b4-05e0-f0ada6f00d05-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-e4856f23-75fa-b429-169d-45877a00a174-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-ed84d1cb-9ece-0b32-7013-8e79d3a902d4-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_300a2886-4d7a-5370-48e5-dc4c3a53068b-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-a0729f5b-865f-20f1-bc02-cd20c5e41667-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_66abfc52-53b7-6867-2153-d66cc8f62c9c-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_8c126424-cafd-bc10-5f32-2547515ece75-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_7c52c30c-c8ef-e7bb-ccd5-c32c7b1596be-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-ef90f226-169e-fac4-c228-08d68dc7a5a4-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_28e754e2-d737-8d9d-b9ee-dc64d8f867bb-a6fc2bec, #w-node-d1e89c42-c0a1-6605-c89b-8ab43908e9db-2340c352.w-node-_5206d6fa-3d42-5a23-7ded-f595f425c66b-a6fc2bec, #w-node-_662a597d-3346-db7a-32c2-d1d2355cf7d1-355cf7ca.w-node-_8b1858dc-5f92-fd68-c0ca-ce43b2b3bc1e-a061272f {
   grid-area: span 1 / span 1 / span 1 / span 1;
 }
 
