@@ -2380,9 +2380,6 @@
 .utility-link-content-block {
   color: inherit;
   text-decoration: none;
-  transition-property: opacity, color;
-  transition-duration: .3s, .3s;
-  transition-timing-function: ease, ease-in-out;
 }
 
 .utility-link-content-block:hover {
