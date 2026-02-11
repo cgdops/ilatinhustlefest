@@ -1497,10 +1497,12 @@
 }
 
 .cover-image.utility-position-absolute {
-  object-fit: contain;
+  box-sizing: border-box;
+  object-fit: cover;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  display: inline-block;
   position: relative;
 }
 
@@ -1900,8 +1902,6 @@
 .nav.accent-primary-nav {
   background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---background-color--bg-primary);
   color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---text-color--text-on-accent-primary);
-  padding-top: 15px;
-  padding-bottom: 15px;
 }
 
 .nav.secondary-nav {
@@ -4776,7 +4776,8 @@
 
 .nav-container {
   max-width: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---container--container-width);
-  padding: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---spacing--0-75x) var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---container--container-padding-horizontal);
+  padding-right: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---container--container-padding-horizontal);
+  padding-left: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---container--container-padding-horizontal);
   border-bottom-left-radius: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---card--card-radius);
   border-bottom-right-radius: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---card--card-radius);
   background-color: #ddd0;
@@ -4843,9 +4844,8 @@
   color: inherit;
   justify-content: flex-start;
   align-items: center;
-  height: 2.5rem;
   text-decoration: none;
-  display: flex;
+  display: block;
 }
 
 .nav-logo:hover {
@@ -6140,14 +6140,6 @@
   align-items: stretch;
 }
 
-.utility-text-align-center {
-  text-align: center;
-}
-
-.utility-text-align-center.w--current {
-  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---core-neutral-color--neutral-primary);
-}
-
 .icon-container {
   padding: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---spacing--1x);
 }
@@ -6180,14 +6172,6 @@
   padding: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---spacing--1x);
 }
 
-.utility-text-align-center-parent {
-  text-align: center;
-}
-
-.utility-text-align-center-parent.w--current {
-  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---core-neutral-color--neutral-primary);
-}
-
 .utility-text-align-center-parent.utility-text-align-center {
   text-align: center;
 }
@@ -6213,13 +6197,55 @@
   margin-bottom: 0;
 }
 
+.align-center-parent.align-center {
+  justify-content: center;
+}
+
+.utility-text-align-center.w--current {
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-text);
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-bg);
+}
+
+.utility-text-align-center.w--current {
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-text);
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-bg);
+}
+
+.utility-text-align-center.w--current {
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-text);
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-bg);
+}
+
+.utility-text-align-center-parent {
+  text-align: center;
+}
+
+.utility-text-align-center-parent.w--current {
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---core-neutral-color--neutral-primary);
+}
+
+.utility-text-align-center.w--current {
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-text);
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-bg);
+}
+
 .align-center-parent {
   justify-content: center;
   align-items: center;
 }
 
-.align-center-parent.align-center {
+.align-center {
   justify-content: center;
+}
+
+.utility-text-align-center {
+  text-align: center;
+}
+
+.utility-text-align-center.w--current {
+  color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-text);
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-bg);
+  background-color: var(--ai-gen-82921b10-4b39-48f0-b346-808cf4903d29-1746310433538---button--button-primary-bg);
 }
 
 body {
